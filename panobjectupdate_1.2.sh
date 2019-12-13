@@ -16,10 +16,10 @@
 # - Semi-secure storage of API key integrated
 
 # Firewall Variables
-hostname="panfw.skim.systems.local"
-administrator="apiadmin"
-dhcpinterface="ethernet1/1"
-addressobject="ip_nbn_eth1"
+hostname=""
+administrator=""
+dhcpinterface=""
+addressobject=""
 
 echo ""
 echo ""
