@@ -86,10 +86,15 @@ printf "Name the Address object which is currently defined to be that of "$dhcpi
 read -p 'Address Object: ' addressobject
 echo ""
 echo ""
-sed -i -e "s/hostname=.*/hostname="\"$hostname\""/" $script
-sed -i -e "s/administrator=.*/administrator="\"$administrator\""/" $script
-sed -i -e "s/dhcpinterface=.*/dhcpinterface="\"$dhcpinterface\""/" $script
-sed -i -e "s/addressobject=.*/addressobject="\"$addressobject\""/" $script
+#Testing
+echo ""$hostname""
+echo ""$administrator""
+echo ""$dhcpinterface""
+echo ""$addressobject""
+sed -i -e "s%"hostname=.*"%hostname="\"$hostname\""%" $script
+sed -i -e "s%"administrator=.*"%administrator="\"$administrator\""%" $script
+sed -i -e "s%"dhcpinterface=.*"%dhcpinterface="\"$dhcpinterface\""%" $script
+sed -i -e "s%"addressobject=.*"%addressobject="\"$addressobject\""%" $script
 echo ""
 echo ""
 echo "-----------------------------------------------------------------------------------------------------------------------------"
