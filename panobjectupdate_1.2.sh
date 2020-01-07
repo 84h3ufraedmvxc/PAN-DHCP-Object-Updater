@@ -54,14 +54,13 @@ echo "Current object is set to "$currentobject""
 
 # If the IP's do not match, update the address object with the correct IP address and perform a partial commit of the changes
 if [ $currentobject != $dhcpip ]; then
-	printf "\n$(date) | IP CHANGE DETECTED! | Pushing updated address object configuration\n" >> log.txt
+	printf "\n$(date --rfc-3339=seconds) | IP CHANGE DETECTED! | Pushing updated address object configuration | XML Response | " >> log.txt
 	curl -kgs "https://$hostname/api/?type=config&action=set&key=$apikey&xpath=/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/address/entry[@name='$addressobject']&element=<ip-netmask>$dhcpip/32</ip-netmask>" >> log.txt
 	sleep 5s
-	printf "\n$(date) | Performing Partial Commit of changes\n" >> log.txt
+	printf "\n$(date --rfc-3339=seconds) | Performing Partial Commit of changes | XML Response | " >> log.txt
 	curl -kgs "https://$hostname/api/?type=commit&cmd=<commit><partial><admin><member>$administrator</member></admin></partial></commit>&key=$apikey" >> log.txt
-	printf "\n" >> log.txt
 else	
-	printf "$(date) | PAN Address Object reflects current IP allocated by DHCP | No changes performed\n" >> log.txt
+	printf "\n$(date --rfc-3339=seconds) | PAN Address Object reflects current IP allocated by DHCP | No changes performed" >> log.txt
 fi
 
 printf "Finished. Please check log.txt for any API errors\n"
